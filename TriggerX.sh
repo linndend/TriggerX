@@ -34,17 +34,27 @@ echo "============================================="
 echo        "Setup NODE"
 echo "============================================="
 
+
+
 git clone https://github.com/trigg3rX/triggerx-keeper-setup.git
 sleep 3
 cd triggerx-keeper-setup
 sleep 2
+npm i -g @othentic/othentic-cli
+sleep 3
+source ~/.bashrc
+sleep 2
+curl -4 ifconfig.me
+echo "Save ip..."
+sleep 5
+othentic-cli node get-id --node-type attester
+echo "Save peer_ID..."
+sleep 8
 cp .env.example .env
 nano .env
 sleep 5
 
-npm i -g @othentic/othentic-cli@1.10.0
-sleep 3
-othenthic-cli init
+othenthic-cli operator register-eigenlayer
 sleep 3
 othenthic-cli operator register
 sleep 2
@@ -54,3 +64,5 @@ sleep 3
 ./triggerx.sh start-mon
 
 echo "✅ Setup complete!"
+echo "Check Status"
+./triggerx.sh status
